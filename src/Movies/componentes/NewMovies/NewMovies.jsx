@@ -1,52 +1,24 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom';
-import { Button } from 'react-bulma-components'
-import PopularMovies from "../PopularMovies/PopularMovies"
-import Home from "../Home/Home";
+import ListMovies from "../ListMovies/ListMovies";
 
-const cargarHome = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <Home />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
-  };
-
-  const cargarNewMovies = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <NewMovies />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
-  };
-
-  const cargarPopularMovies = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <PopularMovies />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
-  };
-
-function NewMovies(){
+export default function Home() {
+    const [movieList, setMovieList] = useState([]);
+  
+    useEffect(() => {
+      obtenerDatos();
+    }, []);
+  
+    const obtenerDatos = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=d896e8ee95db1320e65111f06a2c925b&language=es-ES&page=1`
+      );
+      const movies = await response.json();
+      setMovieList(movies);
+    };
+  
     return (
-        <div>
-            <Button type="button" onClick={cargarHome}>
-            Home
-          </Button>
-    
-          <Button type="button" onClick={cargarNewMovies}>
-            NewMovies
-          </Button>
-    
-          <Button type="button" onClick={cargarPopularMovies}>
-            PopularMovies
-          </Button>
-        </div>  
-    )
+      <div className="home"> 
+        <ListMovies movies={movieList} />
+      </div>
+    );
 } 
-
-export default NewMovies;

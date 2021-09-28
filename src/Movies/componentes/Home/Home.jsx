@@ -1,40 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Home.scss";
 import SliderMovies from "../SliderMovies/SliderMovies";
-import ReactDOM from 'react-dom';
-import { Button } from 'react-bulma-components'
-import NewMovies from "../NewMovies/NewMovies";
-import PopularMovies from "../PopularMovies/PopularMovies"
 
 export default function Home() {
   const [movieList, setMovieList] = useState([]);
-
-  const cargarHome = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <Home />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
-  };
-
-  const cargarNewMovies = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <NewMovies />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
-  };
-
-  const cargarPopularMovies = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <PopularMovies />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
-  };
 
   useEffect(() => {
     obtenerDatos();
@@ -50,18 +19,6 @@ export default function Home() {
 
   return (
     <div className="home"> 
-      <Button type="button" onClick={cargarHome}>
-        Home
-      </Button>
-
-      <Button type="button" onClick={cargarNewMovies}>
-        NewMovies
-      </Button>
-
-      <Button type="button" onClick={cargarPopularMovies}>
-        PopularMovies
-      </Button>
-
       <SliderMovies movies={movieList} />
     </div>
   );
