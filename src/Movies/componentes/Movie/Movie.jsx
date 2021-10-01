@@ -1,16 +1,6 @@
 import React from "react";
 
 import "./Movie.scss"
-// const Movie = (id, movie) => {
-//     const imagen = movie.backdrop_path;
-//     const description = movie.overview;
-//     return (
-//         <div>
-//             <img src={imagen} />
-//             <p>{description}</p>
-//         </div>
-//     );
-// };
 
 function Movie(props) {
     const {

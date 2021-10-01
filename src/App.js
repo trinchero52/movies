@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Home from "./Movies/componentes/Home/Home";
+import DetailsMovies from './Movies/componentes/DetailsMovies/DetailsMovies';
 import NewMovies from "./Movies/componentes/NewMovies/NewMovies";
 import PopularMovies from "./Movies/componentes/PopularMovies/PopularMovies";
 import { Footer } from 'react-bulma-components';
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/popularMovie" >
             <PopularMovies />
+          </Route>
+          <Route path="/movie/:id"exact={true}>
+            <DetailsMovies />
           </Route>
         </Switch>
         <Footer />
