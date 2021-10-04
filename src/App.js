@@ -13,6 +13,7 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import MovieTrailer from './Movies/componentes/MovieTrailer/MovieTrailer';
 
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/movie/:id"exact={true}>
             <DetailsMovies />
+          </Route>
+          <Route path="/movieTrailer/:id"exact={true}>
+            <MovieTrailer />
           </Route>
         </Switch>
         <Footer />

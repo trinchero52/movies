@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import React, { useState, useEffect } from "react";
 import Loading from "../Loading/Loading";
@@ -9,7 +9,6 @@ export default function DetailsMovies(props) {
     const { id } = useParams();
 
     const [ movieInfo, setMovieInfo ] = useState({});
-
 
     useEffect(() => {
         obtenerDatos();
@@ -28,42 +27,51 @@ export default function DetailsMovies(props) {
       }
     console.log("detailsMovies",movieInfo)
 
-    return <RenderMovie movie={movieInfo}/>
+    return <RenderMovie movieInfo={movieInfo}/>
     
 }
 
 function RenderMovie(props) {
-    const { movie:{id, title, backdrop_path, overview, poster_path, genres} } = props;
+    const { movieInfo:{id, title, backdrop_path, overview, poster_path, genres} } = props;
     
     const backdropPath = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
-    const posterPath =  `https://image.tmdb.org/t/p/w500${poster_path}`;
     
-    return (
-                    <PosterMovie image={posterPath} image2={backdropPath} title={title} overview={overview} genres={genres} />
+    return (        <div className="imgDetails" style={{ backgroundImage: `url('${backdropPath}')` }}>
+                    <Row>
+                      <Col span={8} offset={3}>
+                        <PosterMovie image={poster_path} title={title} overview={overview} genres={genres} id={id} />
+                      </Col>
+                    </Row>  
+                    
+                    </div>
             )
 }
 
 function PosterMovie(props) {
-    const { image , image2, title, overview , genres} = props;
+    const { image , image2, title, overview , genres, id} = props;
+    const posterPath =  `https://image.tmdb.org/t/p/w500${image}`;
 
-    return (<div className="imgDetails" style={{ backgroundImage: `url('${image2}')` }}> 
-              <MovieInfo title={title} overview={overview} genres={genres} />
+    return (<div className="imgDetails2" style={{ backgroundImage: `url('${posterPath}')` }}> 
+              <MovieInfo title={title} overview={overview} genres={genres} id={id}/>
             </div>)
 }
 
 function MovieInfo(props) {
-  const { title, overview , genres} = props;
+  const { title, overview , genres, id} = props;
 
   return(<div className="descripcion">
     <div className="titulo"><h1>{title}</h1></div>  
-    <h3>{overview}</h3>
-    <ul>
+    
+    <h4>{overview}</h4>
+              <ul>
+               <p>Generos: </p> 
               {genres.map((g) => (
-                  <li> {g.name}</li>
+                  <li key={g.id}> {g.name}</li>
               ))}
               </ul> 
-    <Button type="link">ver trailer</Button>
-    
+    <Link to={`/movieTrailer/${id}`} className="btn btn-dark"> 
+          trailer
+    </Link>
     </div>
     
     )

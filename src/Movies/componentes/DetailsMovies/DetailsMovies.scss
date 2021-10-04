@@ -6,22 +6,30 @@
   background-size: cover;
 }
 
+.imgDetails2 {
+  position: relative;
+  height: 700px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .titulo {
   width: 50%;
   left: 40%;
   position: relative;
-  height: 50px;
+  height: 100px;
   background-repeat: no-repeat;
 }
 
 .descripcion {
   position: relative;
   top: 10px;
-  left: 10%;
+  left: 150%;
   width: 500px;
-  font-size: small;
+  font-size: large;
   margin: 10px auto;
-  padding: 5px;
+  padding: 8px;
   font-weight: bold;
   -webkit-text-stroke: 1px rgb(237, 242, 243);
 }
